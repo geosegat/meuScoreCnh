@@ -36,7 +36,7 @@ const App = () => {
             name="TabNavigator"
             component={TabNavigator}
             options={{
-              headerShown: false, // Esconde o header do Stack pois o Tab já tem
+              headerShown: false, 
             }}
           />
         </Stack.Navigator>

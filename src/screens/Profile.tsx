@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenLayout from '../components/ScreenLayout';
+import Button from '../components/Button';
 import { RootStackParamList } from '../types/navigation';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -19,9 +20,13 @@ const Profile = () => {
       <View style={styles.container}>
         <Text style={styles.title}>Perfil</Text>
         
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Text style={styles.logoutButtonText}>Sair</Text>
-        </TouchableOpacity>
+        <Button
+          label="Sair"
+          variant="primary"
+          size="medium"
+          onPress={handleLogout}
+          style={styles.logoutButton}
+        />
       </View>
     </ScreenLayout>
   );
@@ -44,13 +49,5 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     backgroundColor: '#DC2626',
-    paddingHorizontal: 32,
-    paddingVertical: 14,
-    borderRadius: 8,
-  },
-  logoutButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
   },
 });

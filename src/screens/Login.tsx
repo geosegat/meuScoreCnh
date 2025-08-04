@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, ScrollView} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import ScreenLayout from '../components/ScreenLayout';
@@ -40,15 +40,10 @@ const Login = () => {
 
   return (
     <ScreenLayout>
-      <ScrollView 
-        style={styles.scrollContainer}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.container}>
-          <CardLogin onLoginPress={handleLogin}/>
-          <View style={styles.containerLoginInfoCard}>
-             {infoCardsData.map((card) => (
+      <View style={styles.container}>
+        <CardLogin onLoginPress={handleLogin}/>
+        <View style={styles.containerLoginInfoCard}>
+           {infoCardsData.map((card) => (
             <LoginInfoCard
               key={card.id}
               icon={card.icon}
@@ -56,19 +51,18 @@ const Login = () => {
               description={card.description}
             />
           ))}
-          </View>
-          
-          <View style={styles.disclaimerContainer}>
-            <Text style={styles.disclaimerText}>
-              Este aplicativo é independente e não possui vínculo oficial com o governo. 
-              Utilizamos apenas dados públicos oficiais para consultas.
-            </Text>
-            <Text style={styles.copyrightText}>
-              © 2025 Meu Score CNH - Todos os direitos reservados
-            </Text>
-          </View>
         </View>
-      </ScrollView>
+        
+        <View style={styles.disclaimerContainer}>
+          <Text style={styles.disclaimerText}>
+            Este aplicativo é independente e não possui vínculo oficial com o governo. 
+            Utilizamos apenas dados públicos oficiais para consultas.
+          </Text>
+          <Text style={styles.copyrightText}>
+            © 2025 Meu Score CNH - Todos os direitos reservados
+          </Text>
+        </View>
+      </View>
     </ScreenLayout>
   );
 };
@@ -76,16 +70,7 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
-  },
   container: {
-    alignItems: 'center',
-    padding: 26,
     gap: 24,
   },
   containerLoginInfoCard: {
@@ -107,5 +92,4 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
   },
- 
 });

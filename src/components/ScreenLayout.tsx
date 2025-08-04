@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
+import {ScrollView, StyleSheet, Platform} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface ScreenLayoutProps {
@@ -11,16 +11,27 @@ const ScreenLayout = ({children, hasTabBar = false}: ScreenLayoutProps) => {
   const insets = useSafeAreaInsets();
   
   const dynamicStyles = StyleSheet.create({
-    container: {
+    scrollView: {
       flex: 1,
       backgroundColor: '#f9fafb',
+    },
+    contentContainer: {
+      padding: 18,
       paddingBottom: hasTabBar 
         ? Platform.OS === 'ios' ? 75 + insets.bottom : 75 + insets.bottom 
         : insets.bottom,
     },
   });
 
-  return <View style={dynamicStyles.container}>{children}</View>;
+  return (
+    <ScrollView 
+      style={dynamicStyles.scrollView}
+      contentContainerStyle={dynamicStyles.contentContainer}
+      showsVerticalScrollIndicator={false}
+    >
+      {children}
+    </ScrollView>
+  );
 };
 
 export default ScreenLayout;

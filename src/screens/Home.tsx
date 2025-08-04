@@ -1,41 +1,67 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
 import ScreenLayout from '../components/ScreenLayout';
-import AppIcons from '../components/AppIcons';
+import Button from '../components/Button';
+import LicensePointsCard from '../components/LicensePointsCard';
+import FinesSummaryCard from '../components/FinesSummaryCard';
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleUpdate = async () => {
+    setIsLoading(true);
+    
+    setTimeout(() => {
+      setIsLoading(false);
+      console.log('Dados atualizados!');
+    }, 2000);
+  };
+
   return (
     <ScreenLayout hasTabBar={true}>
       <View style={styles.container}>
-        <AppIcons.Home size={48} color="#28A745" />
-        <Text style={styles.title}>Home</Text>
-        <View style={styles.iconRow}>
-          <AppIcons.Search size={24} color="#6C757D" />
-          <AppIcons.Settings size={24} color="#6C757D" />
+        <View>
+          <Text style={styles.greeting}>Olá, Geovani!</Text>
+          <Text style={styles.lastUpdateLabel}>Última atualização:</Text>
+          <Text style={styles.lastUpdateDate}>04/08/2025 às 14:30</Text>
+          <Button 
+            label="Atualizar"
+            variant="primary"
+            size="small"
+            loading={isLoading}
+            onPress={handleUpdate}
+          />
         </View>
+
+        <LicensePointsCard/>
+        <FinesSummaryCard/>
+
+
+
       </View>
-    </ScreenLayout>
+    </ScreenLayout> 
   );
 };
 
-export default Home;
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
+    gap: 16,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-    marginVertical: 20,
+  greeting: {
+    fontSize: 20,
+    fontWeight: '500',
+    marginBottom: 4,
+    color: '#111827',
   },
-  iconRow: {
-    flexDirection: 'row',
-    gap: 20,
-    marginTop: 20,
+  lastUpdateLabel: {
+    fontWeight: '500',
+    color: '#787f8e',
+  },
+  lastUpdateDate: {
+    fontWeight: '500',
+    color: '#787f8e',
+    marginBottom: 16,
   },
 });
+
+export default Home;
