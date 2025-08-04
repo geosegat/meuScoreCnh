@@ -5,7 +5,7 @@ import AppIcons from '../components/AppIcons';
 
 const Home = () => {
   return (
-    <ScreenLayout>
+    <ScreenLayout hasTabBar={true}>
       <View style={styles.container}>
         <AppIcons.Home size={48} color="#28A745" />
         <Text style={styles.title}>Home</Text>

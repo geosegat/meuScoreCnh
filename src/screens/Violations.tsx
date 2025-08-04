@@ -4,7 +4,7 @@ import ScreenLayout from '../components/ScreenLayout';
 
 const Violations = () => {
   return (
-    <ScreenLayout>
+    <ScreenLayout hasTabBar={true}>
       <View style={styles.container}>
         <Text style={styles.title}>Violations</Text>
       </View>

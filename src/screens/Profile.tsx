@@ -15,7 +15,7 @@ const Profile = () => {
   };
 
   return (
-    <ScreenLayout>
+    <ScreenLayout hasTabBar={true}>
       <View style={styles.container}>
         <Text style={styles.title}>Perfil</Text>
         
