@@ -4,6 +4,7 @@ import ScreenLayout from '../components/ScreenLayout';
 import Button from '../components/Button';
 import LicensePointsCard from '../components/LicensePointsCard';
 import FinesSummaryCard from '../components/FinesSummaryCard';
+import RecentFinesCard from '../components/RecentFinesCard';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +19,7 @@ const Home = () => {
   };
 
   return (
-    <ScreenLayout hasTabBar={true}>
+    <ScreenLayout>
       <View style={styles.container}>
         <View>
           <Text style={styles.greeting}>Olá, Geovani!</Text>
@@ -35,9 +36,7 @@ const Home = () => {
 
         <LicensePointsCard/>
         <FinesSummaryCard/>
-
-
-
+        <RecentFinesCard/>
       </View>
     </ScreenLayout> 
   );

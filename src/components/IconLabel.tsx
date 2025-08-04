@@ -23,6 +23,10 @@ const IconLabel = ({
 }: IconLabelProps) => {
   const IconComponent = AppIcons[icon];
 
+  if (!label || typeof label !== 'string') {
+    return null;
+  }
+
   return (
     <View style={[styles.container, { gap }, containerStyle]}>
       <IconComponent size={iconSize} color={iconColor} />

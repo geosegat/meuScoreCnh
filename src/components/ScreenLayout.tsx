@@ -1,6 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Platform} from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {ScrollView, StyleSheet, Platform, View} from 'react-native';
 
 interface ScreenLayoutProps {
   children: React.ReactNode;
@@ -8,30 +7,41 @@ interface ScreenLayoutProps {
 }
 
 const ScreenLayout = ({children, hasTabBar = false}: ScreenLayoutProps) => {
-  const insets = useSafeAreaInsets();
   
-  const dynamicStyles = StyleSheet.create({
-    scrollView: {
-      flex: 1,
-      backgroundColor: '#f9fafb',
-    },
-    contentContainer: {
-      padding: 18,
-      paddingBottom: hasTabBar 
-        ? Platform.OS === 'ios' ? 75 + insets.bottom : 75 + insets.bottom 
-        : insets.bottom,
-    },
-  });
+  const paddingBottom = hasTabBar 
+    ? Platform.OS === 'ios' ? 100 : 20 
+    : 20;
 
   return (
-    <ScrollView 
-      style={dynamicStyles.scrollView}
-      contentContainerStyle={dynamicStyles.contentContainer}
-      showsVerticalScrollIndicator={false}
-    >
-      {children}
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView 
+        style={styles.scrollView}
+        contentContainerStyle={[
+          styles.contentContainer,
+          { paddingBottom }
+        ]}
+        showsVerticalScrollIndicator={false}
+        bounces={true}
+        alwaysBounceVertical={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        {children}
+      </ScrollView>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f9fafb',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  contentContainer: {
+    padding: 18,
+  },
+});
 
 export default ScreenLayout;

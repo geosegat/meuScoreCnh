@@ -1,0 +1,102 @@
+[
+  {
+    "id": "#75412-8",
+    "type": "Excesso de velocidade",
+    "date": "15/11/2024 - 20:35",
+    "location": "Av. Paulista, São Paulo - SP",
+    "licensePlate": "ABC-1234",
+    "amount": "195,23",
+    "points": 5,
+    "status": "pending"
+  },
+  {
+    "id": "#75401-2",
+    "type": "Estacionamento irregular",
+    "date": "08/11/2024 - 14:20",
+    "location": "Rua Augusta, São Paulo - SP",
+    "licensePlate": "ABC-1234",
+    "amount": "88,38",
+    "points": 2,
+    "status": "paid"
+  },
+  {
+    "id": "#75398-9",
+    "type": "Avanço de sinal vermelho",
+    "date": "02/11/2024 - 09:15",
+    "location": "Av. Faria Lima, São Paulo - SP",
+    "licensePlate": "ABC-1234",
+    "amount": "293,47",
+    "points": 7,
+    "status": "overdue"
+  },
+  {
+    "id": "#75385-3",
+    "type": "Uso de celular ao volante",
+    "date": "28/10/2024 - 16:45",
+    "location": "Av. Rebouças, São Paulo - SP",
+    "licensePlate": "XYZ-9876",
+    "amount": "130,16",
+    "points": 4,
+    "status": "paid"
+  },
+  {
+    "id": "#75372-1",
+    "type": "Conversão proibida",
+    "date": "25/10/2024 - 11:30",
+    "location": "Rua Oscar Freire, São Paulo - SP",
+    "licensePlate": "KPB-0232",
+    "amount": "195,23",
+    "points": 4,
+    "status": "pending"
+  },
+  {
+    "id": "#75360-0",
+    "type": "Parar sobre faixa de pedestres",
+    "date": "20/10/2024 - 08:00",
+    "location": "Av. Ibirapuera, São Paulo - SP",
+    "licensePlate": "DEF-5432",
+    "amount": "130,16",
+    "points": 2,
+    "status": "overdue"
+  },
+  {
+    "id": "#75350-7",
+    "type": "Velocidade incompatível",
+    "date": "18/10/2024 - 12:00",
+    "location": "Av. Brasil, São Paulo - SP",
+    "licensePlate": "ABC-1234",
+    "amount": "88,38",
+    "points": 3,
+    "status": "paid"
+  },
+  {
+    "id": "#75340-2",
+    "type": "Não guardar distância",
+    "date": "15/10/2024 - 10:00",
+    "location": "Rod. Anhanguera, São Paulo - SP",
+    "licensePlate": "GHI-7890",
+    "amount": "130,16",
+    "points": 4,
+    "status": "pending"
+  },
+  {
+    "id": "#75335-8",
+    "type": "Desrespeito à sinalização",
+    "date": "12/10/2024 - 15:00",
+    "location": "Av. Consolação, São Paulo - SP",
+    "licensePlate": "LMN-5678",
+    "amount": "195,23",
+    "points": 2,
+    "status": "overdue"
+  },
+  {
+    "id": "#75320-4",
+    "type": "Estacionar em local proibido",
+    "date": "08/10/2024 - 13:30",
+    "location": "Rua da Consolação, São Paulo - SP",
+    "licensePlate": "JKL-2468",
+    "amount": "88,38",
+    "points": 2,
+    "status": "paid"
+  }
+]
