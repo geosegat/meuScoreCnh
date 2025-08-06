@@ -18,7 +18,8 @@ import {
   Calendar,
    MapPin, 
    ChevronDown,
-   Funnel
+   Funnel,
+   BookText
 } from 'lucide-react-native';
 
 interface IconProps {
@@ -86,6 +87,9 @@ const AppIcons = {
   ),
   Funnel: ({size = 24, color = '#333'}: IconProps) => (
     <Funnel size={size} color={color} />
+  ),
+  BookText: ({size = 24, color = '#333'}: IconProps) => (
+    <BookText size={size} color={color} />
   ),
 };
 

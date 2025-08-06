@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Card from './Card'
 import { FinesDetailsCardProps } from '../types/fines'
 import IconLabel from './IconLabel'
 import Divider from './Divider'
+import { getStatusColor, getStatusTextColor, getStatusText } from '../utils/statusUtils'
 
 const FinesDetailsCard = ({ 
   fine, 
@@ -11,116 +12,80 @@ const FinesDetailsCard = ({
   showPoints = true, 
   showLicensePlate = true, 
   showLocation = true,
-  style 
+  style,
+  onPress 
 }: FinesDetailsCardProps) => {
-  
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return '#FEF3C7' 
-      case 'paid':
-        return '#D1FAE5' 
-      case 'overdue':
-        return '#FEE2E2' 
-      default:
-        return '#F3F4F6' 
-    }
-  }
-
-  const getStatusTextColor = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return '#92400E'
-      case 'paid':
-        return '#065F46'
-      case 'overdue':
-        return '#991B1B'
-      default:
-        return '#374151'
-    }
-  }
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return 'Pendente'
-      case 'paid':
-        return 'Paga'
-      case 'overdue':
-        return 'Vencida'
-      default:
-        return 'Desconhecido'
-    }
-  }
 
   return (
-    <Card style={style}>
-      <View style={styles.header}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{fine.type}</Text>
-          <View style={[
-            styles.statusBadge, 
-            { backgroundColor: getStatusColor(fine.status) }
-          ]}>
-            <Text style={[
-              styles.statusText,
-              { color: getStatusTextColor(fine.status) }
+    <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+      <Card style={style}>
+        <View style={styles.header}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{fine.type}</Text>
+            <View style={[
+              styles.statusBadge, 
+              { backgroundColor: getStatusColor(fine.status) }
             ]}>
-              {getStatusText(fine.status)}
-            </Text>
+              <Text style={[
+                styles.statusText,
+                { color: getStatusTextColor(fine.status) }
+              ]}>
+                {getStatusText(fine.status)}
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={styles.content}>
-        <View style={styles.infoRow}>
-          <IconLabel 
-            gap={6} 
-            textStyle={styles.iconLabelText} 
-            iconSize={14} 
-            icon="Calendar" 
-            label={fine.date} 
-          />
-        </View>
-        {showLocation && fine.location && (
+        <View style={styles.content}>
           <View style={styles.infoRow}>
             <IconLabel 
               gap={6} 
               textStyle={styles.iconLabelText} 
               iconSize={14} 
-              icon="MapPin" 
-              label={fine.location} 
+              icon="Calendar" 
+              label={fine.date} 
             />
           </View>
-        )}
+          {showLocation && fine.location && (
+            <View style={styles.infoRow}>
+              <IconLabel 
+                gap={6} 
+                textStyle={styles.iconLabelText} 
+                iconSize={14} 
+                icon="MapPin" 
+                label={fine.location} 
+              />
+            </View>
+          )}
 
-        {showLicensePlate && fine.licensePlate && (
-          <View style={styles.infoRow}>
-            <IconLabel 
-              gap={6} 
-              textStyle={styles.iconLabelText} 
-              iconSize={14} 
-              icon="Car" 
-              label={fine.licensePlate} 
-            />
-          </View>
-        )}
-        <Divider />
+          {showLicensePlate && fine.licensePlate && (
+            <View style={styles.infoRow}>
+              <IconLabel 
+                gap={6} 
+                textStyle={styles.iconLabelText} 
+                iconSize={14} 
+                icon="Car" 
+                label={fine.licensePlate} 
+              />
+            </View>
+          )}
+          <Divider />
 
-        <View style={styles.footer}>
-          <View style={styles.amountContainer}>
-            <Text style={styles.amount}>R$ {fine.amount}</Text>
-            {showPoints && fine.points && fine.points > 0 && (
-              <Text style={styles.points}>{fine.points} pontos</Text>
+          <View style={styles.footer}>
+            <View style={styles.amountContainer}>
+              <Text style={styles.amount}>R$ {fine.amount}</Text>
+              {showPoints && fine.points && fine.points > 0 && (
+                <Text style={styles.points}>{fine.points} pontos</Text>
+              )}
+            </View>
+            
+            {showId && fine.id && (
+              <Text style={styles.id}>{fine.id}</Text>
             )}
           </View>
-          
-          {showId && fine.id && (
-            <Text style={styles.id}>{fine.id}</Text>
-          )}
         </View>
-      </View>
-    </Card>
+      </Card>
+    </TouchableOpacity>
   )
 }
 

@@ -7,6 +7,15 @@ export interface Fine {
   amount: string;
   points?: number;
   status: 'pending' | 'paid' | 'overdue';
+  dueDate?: string;
+  description?: string;
+  article?: string;
+  speedLimit?: number;
+  recordedSpeed?: number;
+  excessSpeed?: number;
+  excessPercentage?: number;
+  officer?: string;
+  equipment?: string;
 }
 
 export interface FinesDetailsCardProps {
@@ -16,4 +25,5 @@ export interface FinesDetailsCardProps {
   showLicensePlate?: boolean;
   showLocation?: boolean;
   style?: any;
+  onPress?: () => void;
 }

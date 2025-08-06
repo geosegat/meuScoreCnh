@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackNavigationProp } from '../types/navigation';
 import ScreenLayout from '../components/ScreenLayout';
 import SearchInput from '../components/SearchInput';
 import StatusDropdown from '../components/StatusDropdown';
@@ -9,8 +11,10 @@ import PeriodFilterModal from '../components/PeriodFilterModal';
 import { View } from 'react-native';
 import finesData from '../data/finesData.json';
 import { Fine } from '../types/fines';
+import { getFilteredFines } from '../utils/filterUtils';
 
 const Violations = () => {
+  const navigation = useNavigation<RootStackNavigationProp>();
   const [searchText, setSearchText] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedPeriod, setSelectedPeriod] = useState('12months');
@@ -18,62 +22,14 @@ const Violations = () => {
   
   const fines = finesData as Fine[];
 
-  const filterByPeriod = (finesList: Fine[], period: string): Fine[] => {
-    const currentDate = new Date();
-    const periodDays = {
-      '7days': 7,
-      '1month': 30,
-      '3months': 90,
-      '6months': 180,
-      '12months': 365,
-    }[period] || 365;
-
-    return finesList.filter(fine => {
-      const fineDate = parseFineDate(fine.date);
-      const daysDiff = Math.floor((currentDate.getTime() - fineDate.getTime()) / (1000 * 60 * 60 * 24));
-      return daysDiff <= periodDays;
-    });
-  };
-
-  const parseFineDate = (dateString: string): Date => {
-    const [datePart] = dateString.split(' - ');
-    const [day, month, year] = datePart.split('/');
-    return new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10));
-  };
-
-  const filterByStatus = (finesList: Fine[], status: string): Fine[] => {
-    if (status === 'all') return finesList;
-    return finesList.filter(fine => fine.status === status);
-  };
-
-  const filterBySearch = (finesList: Fine[], searchQuery: string): Fine[] => {
-    if (!searchQuery.trim()) return finesList;
-    
-    const search = searchQuery.toLowerCase().trim();
-    return finesList.filter(fine => 
-      fine.type.toLowerCase().includes(search) ||
-      (fine.location && fine.location.toLowerCase().includes(search)) ||
-      (fine.licensePlate && fine.licensePlate.toLowerCase().includes(search)) ||
-      (fine.id && fine.id.toLowerCase().includes(search))
-    );
-  };
-
-  const getFilteredFines = (): Fine[] => {
-    let filtered = fines;
-    
-    filtered = filterByPeriod(filtered, selectedPeriod);
-    
-    filtered = filterByStatus(filtered, selectedStatus);
-    
-    filtered = filterBySearch(filtered, searchText);
-    
-    return filtered;
-  };
-
-  const filteredFines = getFilteredFines();
+  const filteredFines = getFilteredFines(fines, selectedPeriod, selectedStatus, searchText);
 
   const handleFilterPress = () => {
     setIsPeriodModalVisible(true);
+  };
+
+  const handleFinePress = (fine: Fine) => {
+    navigation.navigate('ViolationDetails', { fine });
   };
 
   const handlePeriodChange = (period: string) => {
@@ -112,6 +68,7 @@ const Violations = () => {
             showLicensePlate={true} 
             showLocation={true} 
             style={index < filteredFines.length - 1 ? styles.fineWithMargin : undefined}
+            onPress={() => handleFinePress(fine)}
           />
         ))}
       </View>

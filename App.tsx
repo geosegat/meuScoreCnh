@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import LoginScreen from './src/screens/Login';
 import TabNavigator from './src/navigation/TabNavigator';
+import ViolationDetailsScreen from './src/screens/ViolationDetails';
 import { RootStackParamList } from './src/types/navigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -37,6 +38,22 @@ const App = () => {
             component={TabNavigator}
             options={{
               headerShown: false, 
+            }}
+          />
+          <Stack.Screen
+            name="ViolationDetails"
+            component={ViolationDetailsScreen}
+            options={{
+              title: 'Detalhes da Multa',
+              headerStyle: {
+                backgroundColor: '#111827',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+              headerTitleAlign: 'center',
+              headerBackVisible: true,
             }}
           />
         </Stack.Navigator>
