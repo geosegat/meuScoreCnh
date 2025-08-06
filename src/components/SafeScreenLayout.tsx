@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Platform, StatusBar} from 'react-native';
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {SafeAreaView, useSafeAreaInsets, Edge} from 'react-native-safe-area-context';
 
 interface SafeScreenLayoutProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ const SafeScreenLayout = ({children, hasTabBar = false, withBottomSafeArea = tru
     }
   };
 
-  const edges = Platform.OS === 'android' ? ['top'] : ['top', 'left', 'right'];
+  const edges: Edge[] = Platform.OS === 'android' ? ['top'] : ['top', 'left', 'right'];
 
   return (
     <>
