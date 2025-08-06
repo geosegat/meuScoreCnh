@@ -19,7 +19,9 @@ import {
    MapPin, 
    ChevronDown,
    Funnel,
-   BookText
+   BookText,
+   Download,
+   Share2
 } from 'lucide-react-native';
 
 interface IconProps {
@@ -90,6 +92,12 @@ const AppIcons = {
   ),
   BookText: ({size = 24, color = '#333'}: IconProps) => (
     <BookText size={size} color={color} />
+  ),
+  Download: ({size = 24, color = '#333'}: IconProps) => (
+    <Download size={size} color={color} />
+  ),
+  Share: ({size = 24, color = '#333'}: IconProps) => (
+    <Share2 size={size} color={color} />
   ),
 };
 

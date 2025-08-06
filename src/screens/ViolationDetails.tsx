@@ -4,6 +4,7 @@ import ScreenLayout from '../components/ScreenLayout'
 import Card from '../components/Card'
 import IconLabel from '../components/IconLabel'
 import Divider from '../components/Divider'
+import Button from '../components/Button'
 import { Fine } from '../types/fines'
 import { getStatusColor, getStatusTextColor, getStatusText } from '../utils/statusUtils'
 
@@ -17,6 +18,14 @@ interface ViolationDetailsProps {
 
 const ViolationDetails = ({ route }: ViolationDetailsProps) => {
   const fine = route?.params?.fine;
+
+  const handleDownloadPDF = () => {
+    console.log('Download PDF da multa:', fine?.id);
+  };
+
+  const handleShare = () => {
+    console.log('Compartilhar multa:', fine?.id);
+  };
 
   if (!fine) {
     return (
@@ -205,6 +214,28 @@ const ViolationDetails = ({ route }: ViolationDetailsProps) => {
           </Text>
         </View>
       </Card>
+
+      <View style={styles.actionButtonsContainer}>
+        <Button
+          label="Baixar PDF"
+          variant="outline"
+          size="medium"
+          icon="Download"
+          iconPosition="left"
+          onPress={handleDownloadPDF}
+          style={styles.downloadButton}
+        />
+        
+        <Button
+          label="Compartilhar"
+          variant="outline"
+          size="medium"
+          icon="Share"
+          iconPosition="left"
+          onPress={handleShare}
+          style={styles.shareButton}
+        />
+      </View>
     </ScreenLayout>
   )
 }
@@ -417,5 +448,18 @@ const styles = StyleSheet.create({
     flex: 1,
     flexShrink: 1,
     textAlign: 'right',
+  },
+  actionButtonsContainer: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  downloadButton: {
+    flex: 1,
+    borderColor: '#111827',
+  },
+  shareButton: {
+    flex: 1,
+        borderColor: '#111827',
+
   },
 })
