@@ -14,7 +14,11 @@ import {
   SquareArrowOutUpRight,
   Lock,
   Zap,
-  BarChart3,FileStack, Calendar, MapPin
+  BarChart3,FileStack, 
+  Calendar,
+   MapPin, 
+   ChevronDown,
+   Funnel
 } from 'lucide-react-native';
 
 interface IconProps {
@@ -76,6 +80,12 @@ const AppIcons = {
   ),
   MapPin: ({size = 24, color = '#333'}: IconProps) => (
     <MapPin size={size} color={color} />
+  ),
+  ChevronDown: ({size = 24, color = '#333'}: IconProps) => (
+    <ChevronDown size={size} color={color} />
+  ),
+  Funnel: ({size = 24, color = '#333'}: IconProps) => (
+    <Funnel size={size} color={color} />
   ),
 };
 
