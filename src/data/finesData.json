@@ -1,8 +1,8 @@
 [
   {
-    "id": "#75412-8",
+    "id": "#75420-1",
     "type": "Excesso de velocidade",
-    "date": "15/11/2024 - 20:35",
+    "date": "04/08/2025 - 14:20",
     "location": "Av. Paulista, São Paulo - SP",
     "licensePlate": "ABC-1234",
     "amount": "195,23",
@@ -10,9 +10,19 @@
     "status": "pending"
   },
   {
-    "id": "#75401-2",
+    "id": "#75419-5",
+    "type": "Uso de celular ao volante",
+    "date": "03/08/2025 - 09:15",
+    "location": "Av. Faria Lima, São Paulo - SP",
+    "licensePlate": "XYZ-9876",
+    "amount": "293,47",
+    "points": 7,
+    "status": "pending"
+  },
+  {
+    "id": "#75418-3",
     "type": "Estacionamento irregular",
-    "date": "08/11/2024 - 14:20",
+    "date": "01/08/2025 - 16:30",
     "location": "Rua Augusta, São Paulo - SP",
     "licensePlate": "ABC-1234",
     "amount": "88,38",
@@ -20,83 +30,123 @@
     "status": "paid"
   },
   {
-    "id": "#75398-9",
+    "id": "#75417-7",
     "type": "Avanço de sinal vermelho",
-    "date": "02/11/2024 - 09:15",
-    "location": "Av. Faria Lima, São Paulo - SP",
-    "licensePlate": "ABC-1234",
+    "date": "28/07/2025 - 11:45",
+    "location": "Av. Rebouças, São Paulo - SP",
+    "licensePlate": "KPB-0232",
     "amount": "293,47",
     "points": 7,
     "status": "overdue"
   },
   {
-    "id": "#75385-3",
-    "type": "Uso de celular ao volante",
-    "date": "28/10/2024 - 16:45",
-    "location": "Av. Rebouças, São Paulo - SP",
-    "licensePlate": "XYZ-9876",
+    "id": "#75416-2",
+    "type": "Conversão proibida",
+    "date": "25/07/2025 - 08:00",
+    "location": "Rua Oscar Freire, São Paulo - SP",
+    "licensePlate": "DEF-5432",
     "amount": "130,16",
     "points": 4,
     "status": "paid"
   },
   {
-    "id": "#75372-1",
-    "type": "Conversão proibida",
-    "date": "25/10/2024 - 11:30",
-    "location": "Rua Oscar Freire, São Paulo - SP",
-    "licensePlate": "KPB-0232",
-    "amount": "195,23",
-    "points": 4,
-    "status": "pending"
-  },
-  {
-    "id": "#75360-0",
+    "id": "#75415-9",
     "type": "Parar sobre faixa de pedestres",
-    "date": "20/10/2024 - 08:00",
+    "date": "20/07/2025 - 17:20",
     "location": "Av. Ibirapuera, São Paulo - SP",
-    "licensePlate": "DEF-5432",
+    "licensePlate": "GHI-7890",
     "amount": "130,16",
     "points": 2,
-    "status": "overdue"
+    "status": "paid"
   },
   {
-    "id": "#75350-7",
+    "id": "#75414-4",
     "type": "Velocidade incompatível",
-    "date": "18/10/2024 - 12:00",
+    "date": "15/07/2025 - 13:10",
     "location": "Av. Brasil, São Paulo - SP",
-    "licensePlate": "ABC-1234",
+    "licensePlate": "LMN-5678",
     "amount": "88,38",
     "points": 3,
     "status": "paid"
   },
   {
-    "id": "#75340-2",
+    "id": "#75413-1",
     "type": "Não guardar distância",
-    "date": "15/10/2024 - 10:00",
+    "date": "10/07/2025 - 10:30",
     "location": "Rod. Anhanguera, São Paulo - SP",
-    "licensePlate": "GHI-7890",
+    "licensePlate": "JKL-2468",
     "amount": "130,16",
     "points": 4,
-    "status": "pending"
+    "status": "paid"
   },
   {
-    "id": "#75335-8",
+    "id": "#75412-8",
     "type": "Desrespeito à sinalização",
-    "date": "12/10/2024 - 15:00",
+    "date": "05/07/2025 - 15:45",
     "location": "Av. Consolação, São Paulo - SP",
-    "licensePlate": "LMN-5678",
+    "licensePlate": "ABC-1234",
     "amount": "195,23",
     "points": 2,
-    "status": "overdue"
+    "status": "paid"
   },
   {
-    "id": "#75320-4",
+    "id": "#75411-6",
     "type": "Estacionar em local proibido",
-    "date": "08/10/2024 - 13:30",
+    "date": "01/07/2025 - 12:00",
     "location": "Rua da Consolação, São Paulo - SP",
-    "licensePlate": "JKL-2468",
+    "licensePlate": "XYZ-9876",
     "amount": "88,38",
     "points": 2,
+    "status": "paid"
+  },
+  {
+    "id": "#75410-3",
+    "type": "Dirigir sem cinto de segurança",
+    "date": "25/06/2025 - 18:15",
+    "location": "Av. Marginal Tietê, São Paulo - SP",
+    "licensePlate": "KPB-0232",
+    "amount": "195,23",
+    "points": 5,
+    "status": "paid"
+  },
+  {
+    "id": "#75409-8",
+    "type": "Ultrapassagem proibida",
+    "date": "20/06/2025 - 07:30",
+    "location": "Av. 23 de Maio, São Paulo - SP",
+    "licensePlate": "DEF-5432",
+    "amount": "293,47",
+    "points": 7,
+    "status": "paid"
+  },
+  {
+    "id": "#75408-5",
+    "type": "Estacionamento em vaga de deficiente",
+    "date": "15/06/2025 - 14:45",
+    "location": "Shopping Iguatemi, São Paulo - SP",
+    "licensePlate": "GHI-7890",
+    "amount": "293,47",
+    "points": 7,
+    "status": "paid"
+  },
+  {
+    "id": "#75407-2",
+    "type": "Não usar equipamento obrigatório",
+    "date": "10/06/2025 - 19:00",
+    "location": "Av. Ipiranga, São Paulo - SP",
+    "licensePlate": "LMN-5678",
+    "amount": "88,38",
+    "points": 3,
+    "status": "paid"
+  },
+  {
+    "id": "#75406-9",
+    "type": "Transitar na contramão",
+    "date": "05/06/2025 - 06:20",
+    "location": "Rua da Liberdade, São Paulo - SP",
+    "licensePlate": "JKL-2468",
+    "amount": "293,47",
+    "points": 7,
     "status": "paid"
   }
 ]

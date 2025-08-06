@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import ScreenLayout from '../components/ScreenLayout';
 import SearchInput from '../components/SearchInput';
 import StatusDropdown from '../components/StatusDropdown';
 import AppIcons from '../components/AppIcons';
 import FinesDetailsCard from '../components/FinesDetailsCard';
+import PeriodFilterModal from '../components/PeriodFilterModal';
 import { View } from 'react-native';
 import finesData from '../data/finesData.json';
 import { Fine } from '../types/fines';
@@ -12,8 +13,72 @@ import { Fine } from '../types/fines';
 const Violations = () => {
   const [searchText, setSearchText] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [selectedPeriod, setSelectedPeriod] = useState('12months');
+  const [isPeriodModalVisible, setIsPeriodModalVisible] = useState(false);
   
   const fines = finesData as Fine[];
+
+  const filterByPeriod = (finesList: Fine[], period: string): Fine[] => {
+    const currentDate = new Date();
+    const periodDays = {
+      '7days': 7,
+      '1month': 30,
+      '3months': 90,
+      '6months': 180,
+      '12months': 365,
+    }[period] || 365;
+
+    return finesList.filter(fine => {
+      const fineDate = parseFineDate(fine.date);
+      const daysDiff = Math.floor((currentDate.getTime() - fineDate.getTime()) / (1000 * 60 * 60 * 24));
+      return daysDiff <= periodDays;
+    });
+  };
+
+  const parseFineDate = (dateString: string): Date => {
+    const [datePart] = dateString.split(' - ');
+    const [day, month, year] = datePart.split('/');
+    return new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10));
+  };
+
+  const filterByStatus = (finesList: Fine[], status: string): Fine[] => {
+    if (status === 'all') return finesList;
+    return finesList.filter(fine => fine.status === status);
+  };
+
+  const filterBySearch = (finesList: Fine[], searchQuery: string): Fine[] => {
+    if (!searchQuery.trim()) return finesList;
+    
+    const search = searchQuery.toLowerCase().trim();
+    return finesList.filter(fine => 
+      fine.type.toLowerCase().includes(search) ||
+      (fine.location && fine.location.toLowerCase().includes(search)) ||
+      (fine.licensePlate && fine.licensePlate.toLowerCase().includes(search)) ||
+      (fine.id && fine.id.toLowerCase().includes(search))
+    );
+  };
+
+  const getFilteredFines = (): Fine[] => {
+    let filtered = fines;
+    
+    filtered = filterByPeriod(filtered, selectedPeriod);
+    
+    filtered = filterByStatus(filtered, selectedStatus);
+    
+    filtered = filterBySearch(filtered, searchText);
+    
+    return filtered;
+  };
+
+  const filteredFines = getFilteredFines();
+
+  const handleFilterPress = () => {
+    setIsPeriodModalVisible(true);
+  };
+
+  const handlePeriodChange = (period: string) => {
+    setSelectedPeriod(period);
+  };
 
   return (
     <ScreenLayout >
@@ -28,13 +93,17 @@ const Violations = () => {
         value={selectedStatus}
         onSelectionChange={setSelectedStatus}
       />
-        <View style={styles.filterIcon}>
+        <TouchableOpacity 
+          style={styles.filterIcon}
+          onPress={handleFilterPress}
+          activeOpacity={0.7}
+        >
           <AppIcons.Funnel size={18} color="black" />
-        </View>
+        </TouchableOpacity>
       </View>
       
       <View style={styles.finesContainer}>
-        {fines.map((fine, index) => (
+        {filteredFines.map((fine, index) => (
           <FinesDetailsCard 
             key={fine.id || index}
             fine={fine}
@@ -42,10 +111,17 @@ const Violations = () => {
             showPoints={true}
             showLicensePlate={true} 
             showLocation={true} 
-            style={index < fines.length - 1 ? styles.fineWithMargin : undefined}
+            style={index < filteredFines.length - 1 ? styles.fineWithMargin : undefined}
           />
         ))}
       </View>
+
+      <PeriodFilterModal
+        visible={isPeriodModalVisible}
+        onClose={() => setIsPeriodModalVisible(false)}
+        selectedPeriod={selectedPeriod}
+        onPeriodChange={handlePeriodChange}
+      />
     </ScreenLayout>
   );
 };
