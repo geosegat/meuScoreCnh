@@ -16,6 +16,7 @@ export interface Fine {
   excessPercentage?: number;
   officer?: string;
   equipment?: string;
+  userCpf?: string; // CPF do usuário dono da multa
 }
 
 export interface FinesDetailsCardProps {

@@ -5,9 +5,11 @@ import Button from '../components/Button';
 import LicensePointsCard from '../components/LicensePointsCard';
 import FinesSummaryCard from '../components/FinesSummaryCard';
 import RecentFinesCard from '../components/RecentFinesCard';
+import { getCurrentUser } from '../services/dataService';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const user = getCurrentUser();
 
   const handleUpdate = async () => {
     setIsLoading(true);
@@ -22,7 +24,7 @@ const Home = () => {
     <ScreenLayout hasTabBar={true}>
       <View style={styles.container}>
         <View>
-          <Text style={styles.greeting}>Olá, Geovani!</Text>
+          <Text style={styles.greeting}>Olá, {user?.name.split(' ')[0] || 'Usuário'}!</Text>
           <Text style={styles.lastUpdateLabel}>Última atualização:</Text>
           <Text style={styles.lastUpdateDate}>04/08/2025 às 14:30</Text>
           <Button 

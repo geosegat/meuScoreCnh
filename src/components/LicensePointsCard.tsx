@@ -2,10 +2,17 @@ import { StyleSheet, Text, View,  } from 'react-native'
 import React from 'react'
 import Card from './Card'
 import IconLabel from './IconLabel'
+import { getCurrentUser } from '../services/dataService'
 
 const LicensePointsCard = () => {
-  const currentPoints = 32;
-  const maxPoints = 40;
+  const user = getCurrentUser();
+  
+  if (!user) {
+    return null; // Não exibe o card se não há usuário logado
+  }
+  
+  const currentPoints = user.currentPoints;
+  const maxPoints = user.maxPoints;
   const progressPercentage = (currentPoints / maxPoints) * 100;
 
   return (

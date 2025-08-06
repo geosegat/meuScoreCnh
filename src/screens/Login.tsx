@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import ScreenLayout from '../components/ScreenLayout';
 import CardLogin from '../components/CardLogin';
 import LoginInfoCard from '../components/LoginInfoCard';
+import UserSelectionModal from '../components/UserSelectionModal';
 import AppIcons from '../components/AppIcons';
-import { RootStackParamList } from '../types/navigation'
+import { RootStackParamList } from '../types/navigation';
+import { 
+  usersData, 
+  setCurrentUser, 
+  getAllUserProfileImages 
+} from '../services/dataService';
+import { User } from '../types/user';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -33,8 +40,25 @@ const infoCardsData = [
 
 const Login = () => {
   const navigation = useNavigation<NavigationProp>();
+  const [showUserModal, setShowUserModal] = useState(false);
+  const [userProfileImages, setUserProfileImages] = useState<{ [userId: string]: string }>({});
+
+  useEffect(() => {
+    loadUserProfileImages();
+  }, []);
+
+  const loadUserProfileImages = async () => {
+    const images = await getAllUserProfileImages();
+    setUserProfileImages(images);
+  };
 
   const handleLogin = () => {
+    setShowUserModal(true);
+  };
+
+  const handleQuickUserSelection = (user: User) => {
+    setCurrentUser(user);
+    setShowUserModal(false);
     navigation.navigate('TabNavigator');
   };
 
@@ -42,6 +66,7 @@ const Login = () => {
     <ScreenLayout >
       <View style={styles.container}>
         <CardLogin onLoginPress={handleLogin}/>
+        
         <View style={styles.containerLoginInfoCard}>
            {infoCardsData.map((card) => (
             <LoginInfoCard
@@ -63,6 +88,15 @@ const Login = () => {
           </Text>
         </View>
       </View>
+      
+      {/* Modal de seleção de usuários */}
+      <UserSelectionModal
+        visible={showUserModal}
+        users={usersData}
+        onSelectUser={handleQuickUserSelection}
+        onClose={() => setShowUserModal(false)}
+        userProfileImages={userProfileImages}
+      />
     </ScreenLayout>
   );
 };

@@ -21,7 +21,9 @@ import {
    Funnel,
    BookText,
    Download,
-   Share2
+   Share2,
+   LogOut,
+   Camera
 } from 'lucide-react-native';
 
 interface IconProps {
@@ -98,6 +100,21 @@ const AppIcons = {
   ),
   Share: ({size = 24, color = '#333'}: IconProps) => (
     <Share2 size={size} color={color} />
+  ),
+  LogOut: ({size = 24, color = '#333'}: IconProps) => (
+    <LogOut size={size} color={color} />
+  ),
+  Camera: ({size = 24, color = '#333'}: IconProps) => (
+    <Camera size={size} color={color} />
+  ),
+  ArrowRight: ({size = 24, color = '#333'}: IconProps) => (
+    <ArrowRight size={size} color={color} />
+  ),
+  ChevronRight: ({size = 24, color = '#333'}: IconProps) => (
+    <ArrowRight size={size} color={color} />
+  ),
+  X: ({size = 24, color = '#333'}: IconProps) => (
+    <X size={size} color={color} />
   ),
 };
 

@@ -33,6 +33,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Este app precisa acessar sua galeria de fotos para selecionar uma foto de perfil.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Este app precisa acessar sua câmera para tirar uma foto de perfil.</string>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

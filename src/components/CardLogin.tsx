@@ -2,8 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import AppIcons from './AppIcons'
 import IconContainer from './IconContainer'
-import Button from './Button'
 import Card from './Card'
+import Button from './Button'
 
 interface CardLoginProps {
   onLoginPress: () => void;
@@ -33,16 +33,18 @@ const CardLogin = ({ onLoginPress }: CardLoginProps) => {
                     situação no trânsito.
                 </Text>
             </View>
-            <Button
-                label="Entrar com gov.br"
-                icon="ExternalLink"
-                iconPosition="right"
-                variant="primary"
-                size="large"
-                onPress={onLoginPress}
-                style={styles.loginButton}
+            
+            <Button 
+              label="Entrar com conta Gov.br"
+              variant="primary"
+              size="medium"
+              style={styles.loginButton}
+              onPress={onLoginPress}
             />
-            <Text style={styles.redirectText}>Você será redirecionado para o portal oficial do governo</Text>
+            
+            <Text style={styles.redirectText}>
+              Você será redirecionado para o portal oficial do governo
+            </Text>
         </View>
     </Card>
   )

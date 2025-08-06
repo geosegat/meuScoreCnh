@@ -10,7 +10,7 @@ import FinesDetailsCard from '../components/FinesDetailsCard';
 import PeriodFilterModal from '../components/PeriodFilterModal';
 import EmptyState from '../components/EmptyState';
 import { View } from 'react-native';
-import finesData from '../data/finesData.json';
+import { getCurrentUserFines } from '../services/dataService';
 import { Fine } from '../types/fines';
 import { getFilteredFines } from '../utils/filterUtils';
 
@@ -21,7 +21,7 @@ const Violations = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('12months');
   const [isPeriodModalVisible, setIsPeriodModalVisible] = useState(false);
   
-  const fines = finesData as Fine[];
+  const fines = getCurrentUserFines();
 
   if (fines.length === 0) {
     return (

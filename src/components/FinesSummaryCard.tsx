@@ -3,31 +3,41 @@ import React from 'react'
 import StatusBox from './StatusBox'
 import Card from './Card'
 import IconLabel from './IconLabel'
+import { getCurrentUserFines, calculatePendingFinesTotal, calculatePaidFinesTotal } from '../services/dataService'
 
 const FinesSummaryCard = () => {
+  const fines = getCurrentUserFines();
+  
+  // Calcular estatísticas
+  const pendingFines = fines.filter(fine => fine.status === 'pending');
+  const paidFines = fines.filter(fine => fine.status === 'paid');
+  
+  const pendingTotal = calculatePendingFinesTotal();
+  const paidTotal = calculatePaidFinesTotal();
+  const grandTotal = pendingTotal + paidTotal;
   return (
     <Card >
      <IconLabel icon='History' label='Resumo dos Últimos 12 Meses'/>
      <View style={styles.statusBoxRow}>
          <StatusBox 
-           count={3}
+           count={pendingFines.length}
            title="Multas pendentes"
-           value="R$ 577,08"
+           value={`R$ ${pendingTotal.toFixed(2).replace('.', ',')}`}
            type="pending"
            style={styles.flexBox}
          />
          <StatusBox 
-           count={2}
+           count={paidFines.length}
            title="Multas pagas"
-           value="R$ 234,50"
+           value={`R$ ${paidTotal.toFixed(2).replace('.', ',')}`}
            type="paid"
            style={styles.flexBox}
          />
      </View> 
         <StatusBox 
-          count={5}
+          count={fines.length}
           title="Total de multas"
-          value="R$ 811,58"
+          value={`R$ ${grandTotal.toFixed(2).replace('.', ',')}`}
           type="default"
         />
 

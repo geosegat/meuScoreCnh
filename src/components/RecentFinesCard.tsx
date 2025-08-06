@@ -4,12 +4,10 @@ import Card from './Card'
 import IconLabel from './IconLabel'
 import FinesDetailsCard from './FinesDetailsCard'
 import EmptyState from './EmptyState'
-import finesData from '../data/finesData.json'
-import { Fine } from '../types/fines'
+import { getRecentFines } from '../services/dataService'
 
 const RecentFinesCard = () => {
-  const fines = finesData as Fine[]
-  const recentFines = fines.slice(0, 3)
+  const recentFines = getRecentFines(3)
 
   return (
    <Card>
