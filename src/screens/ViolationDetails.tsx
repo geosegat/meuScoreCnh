@@ -16,25 +16,17 @@ interface ViolationDetailsProps {
 }
 
 const ViolationDetails = ({ route }: ViolationDetailsProps) => {
-  const fine: Fine = route?.params?.fine || {
-    id: "#75420-1",
-    type: "Excesso de velocidade",
-    date: "15/11/2024 às 14:32",
-    location: "Av. Paulista, 1500 - Bela Vista, São Paulo - SP",
-    licensePlate: "ABC-1234",
-    amount: "195,23",
-    points: 5,
-    status: "pending",
-    dueDate: "15/12/2024",
-    description: "Velocidade registrada: 85 km/h em via de 60 km/h. Você excedeu o limite de velocidade em 41,7%.",
-    article: "Art. 218, II do CTB",
-    speedLimit: 60,
-    recordedSpeed: 85,
-    excessSpeed: 25,
-    excessPercentage: 41.7,
-    officer: "Agente 12345",
-    equipment: "Radar fixo modelo XYZ-2024 - Equipamento 001 - Posto Avançado Paulista"
-  };
+  const fine = route?.params?.fine;
+
+  if (!fine) {
+    return (
+      <ScreenLayout >
+        <Card style={styles.headerCard}>
+          <Text style={styles.errorText}>Erro: Dados da multa não encontrados</Text>
+        </Card>
+      </ScreenLayout>
+    );
+  }
 
   return (
     <ScreenLayout >
@@ -222,6 +214,12 @@ export default ViolationDetails
 const styles = StyleSheet.create({
   headerCard: {
     marginBottom: 16,
+  },
+  errorText: {
+    fontSize: 16,
+    color: '#EF4444',
+    textAlign: 'center',
+    fontWeight: '500',
   },
   titleContainer: {
     flexDirection: 'row',

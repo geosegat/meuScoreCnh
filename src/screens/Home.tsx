@@ -19,7 +19,7 @@ const Home = () => {
   };
 
   return (
-    <ScreenLayout>
+    <ScreenLayout hasTabBar={true}>
       <View style={styles.container}>
         <View>
           <Text style={styles.greeting}>Olá, Geovani!</Text>

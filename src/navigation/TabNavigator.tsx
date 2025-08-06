@@ -43,8 +43,12 @@ const TabNavigator = () => {
           borderTopWidth: 1,
           borderTopColor: '#E5E7EB',
           paddingTop: 8,
-          paddingBottom: Platform.OS === 'ios' ? insets.bottom + 8 : insets.bottom + 8,
-          height: Platform.OS === 'ios' ? 65 + insets.bottom : 65 + insets.bottom,
+          paddingBottom: Platform.OS === 'ios' ? insets.bottom + 8 : Math.max(insets.bottom + 8, 16),
+          height: Platform.OS === 'ios' ? 65 + insets.bottom : Math.max(65 + insets.bottom, 81),
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
         },
       }}>
       <Tab.Screen

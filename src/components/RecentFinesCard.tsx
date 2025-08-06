@@ -3,6 +3,7 @@ import React from 'react'
 import Card from './Card'
 import IconLabel from './IconLabel'
 import FinesDetailsCard from './FinesDetailsCard'
+import EmptyState from './EmptyState'
 import finesData from '../data/finesData.json'
 import { Fine } from '../types/fines'
 
@@ -14,17 +15,25 @@ const RecentFinesCard = () => {
    <Card>
     <IconLabel icon='FileStack' label='Multas Recentes'/>
     <View style={styles.finesContainer}>
-      {recentFines.map((fine, index) => (
-        <FinesDetailsCard 
-          key={index}
-          fine={fine}
-          showId={false}
-          showPoints={true}
-          showLicensePlate={false} 
-          showLocation={true} 
-          style={index < recentFines.length - 1 ? styles.fineWithMargin : undefined}
+      {recentFines.length === 0 ? (
+        <EmptyState 
+          title="Parabéns!"
+          message="Você não possui infrações recentes. Continue dirigindo com responsabilidade!"
+          icon="FileStack"
         />
-      ))}
+      ) : (
+        recentFines.map((fine, index) => (
+          <FinesDetailsCard 
+            key={index}
+            fine={fine}
+            showId={false}
+            showPoints={true}
+            showLicensePlate={false} 
+            showLocation={true} 
+            style={index < recentFines.length - 1 ? styles.fineWithMargin : undefined}
+          />
+        ))
+      )}
     </View>
    </Card>
   )

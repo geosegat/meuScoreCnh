@@ -1,5 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Platform, View} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 interface ScreenLayoutProps {
   children: React.ReactNode;
@@ -7,10 +8,19 @@ interface ScreenLayoutProps {
 }
 
 const ScreenLayout = ({children, hasTabBar = false}: ScreenLayoutProps) => {
+  const insets = useSafeAreaInsets();
   
-  const paddingBottom = hasTabBar 
-    ? Platform.OS === 'ios' ? 100 : 20 
-    : 20;
+  const getBottomPadding = () => {
+    if (Platform.OS === 'ios') {
+      return hasTabBar ? insets.bottom + 80 : insets.bottom + 20;
+    } else {
+      if (hasTabBar) {
+        return 140; 
+      } else {
+        return 60; 
+      }
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -18,10 +28,10 @@ const ScreenLayout = ({children, hasTabBar = false}: ScreenLayoutProps) => {
         style={styles.scrollView}
         contentContainerStyle={[
           styles.contentContainer,
-          { paddingBottom }
+          { paddingBottom: getBottomPadding() }
         ]}
         showsVerticalScrollIndicator={false}
-        bounces={true}
+        bounces={Platform.OS === 'ios'}
         alwaysBounceVertical={false}
         keyboardShouldPersistTaps="handled"
       >

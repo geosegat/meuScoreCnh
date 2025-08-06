@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   return (
-    <ScreenLayout>
+    <ScreenLayout >
       <View style={styles.container}>
         <CardLogin onLoginPress={handleLogin}/>
         <View style={styles.containerLoginInfoCard}>
